@@ -36,11 +36,5 @@ class ClientHandler extends Thread {
   }
 
   private void handleClientMessage(String command) {
-    String[] parts = command.split(" ");
-    String action = parts[0];
-
-    if(action.equals("SET")){
-
-    }
   }
 }
