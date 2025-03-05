@@ -11,10 +11,12 @@ public class InMemoryDBClient {
 
   private final String HOST;
   private final int PORT;
+  private final ProcessCommand processCommand;
 
   public InMemoryDBClient(String host, int port) {
     this.HOST = host;
     this.PORT = port;
+    this.processCommand = new ProcessCommand();
   }
 
   public void start() {
@@ -36,8 +38,16 @@ public class InMemoryDBClient {
           continue;
         }
 
-        writer.println(command);
-        System.out.println(reader.readLine());
+        try {
+
+          processCommand.process(command);
+
+          writer.println(processCommand.getProcessedCommand());
+          System.out.println(reader.readLine());
+
+        } catch (IllegalArgumentException e) {
+          System.out.println("Invalid command");
+        }
 
       }
 

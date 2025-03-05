@@ -19,6 +19,7 @@ class ClientHandler extends Thread {
         PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true)) {
 
       String clientMessage;
+
       while ((clientMessage = reader.readLine()) != null) {
         System.out.println("Received: " + clientMessage);
         writer.println("Server: Message Received");
